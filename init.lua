@@ -93,6 +93,9 @@ vim.g.maplocalleader = ","
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+-- Needed so obsidian.nvim can render extra ui stuff like checkboxes
+vim.opt_local.conceallevel = 2
+
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
