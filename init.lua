@@ -196,10 +196,10 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- TIP: Disable arrow keys in normal mode
--- vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
+vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
+vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
+vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
+vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -534,7 +534,12 @@ require("lazy").setup({
 					-- Jump to the definition of the word under your cursor.
 					--  This is where a variable was first declared, or where a function is defined, etc.
 					--  To jump back, press <C-t>.
-					map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+					vim.keymap.set(
+						"n",
+						"<leader>cd",
+						require("telescope.builtin").lsp_definitions,
+						{ desc = "[G]oto [D]efinition" }
+					)
 
 					-- Find references for the word under your cursor.
 					map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
@@ -841,17 +846,6 @@ require("lazy").setup({
 					{ name = "path" },
 				},
 			})
-		end,
-	},
-	{
-		"catppuccin/nvim",
-		name = "catppuccin",
-		priority = 1000,
-		config = function()
-			vim.g.catppuccin_flavour = "mocha"
-			require("catppuccin").setup()
-			-- setup must be called before loading
-			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
 	-- Highlight todo, notes, etc in comments
